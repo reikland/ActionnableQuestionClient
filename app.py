@@ -224,59 +224,93 @@ Draft:
 # -------------------------
 st.set_page_config(page_title="Strategic Forecast Question Builder", layout="wide")
 
-st.markdown(
-    """
-    <style>
-      :root {
-        --bg: #f7fbff;
-        --card: #ffffff;
-        --ink: #12324a;
-        --muted: #4d6a7f;
-        --blue: #1f8ef1;
-        --green: #20b486;
-      }
-      .stApp { background: #ffffff; color: #000000 !important; }
-      .block-container { padding-top: 2rem; }
-      h1, h2, h3, p, label, span, div { color: #000000; }
-      div[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e4edf5; }
-      div[data-testid="stSidebar"] * { color: #000000 !important; }
-      .stTextInput input, .stTextArea textarea, .stNumberInput input {
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 1px solid #cfd8e3 !important;
-      }
-      .stSelectbox div[data-baseweb="select"] > div,
-      .stMultiSelect div[data-baseweb="select"] > div {
-        background: #ffffff !important;
-        color: #000000 !important;
-      }
-      .stSlider [data-baseweb="slider"] { color: #1f8ef1 !important; }
-      .stButton button {
-        background: #f2f8ff !important;
-        color: #000000 !important;
-        border: 1px solid #c8d8ea !important;
-      }
-      .tag {
-        display: inline-block;
-        padding: 0.25rem 0.55rem;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        margin-right: 0.35rem;
-      }
-      .tag-blue { background: #e6f3ff; color: #1668aa; }
-      .tag-green { background: #e8f9f2; color: #16795d; }
-      .card {
-        background: var(--card);
-        border: 1px solid #e4edf5;
-        border-radius: 14px;
-        padding: 0.85rem 1rem;
-        margin-bottom: 0.75rem;
-      }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+
+def inject_light_theme() -> None:
+    """Force a high-contrast light theme across Streamlit widgets."""
+    st.markdown(
+        """
+        <style>
+          :root { color-scheme: light; }
+
+          .stApp,
+          [data-testid="stAppViewContainer"],
+          [data-testid="stHeader"],
+          [data-testid="stToolbar"],
+          [data-testid="stDecoration"] {
+            background: #ffffff !important;
+            color: #000000 !important;
+          }
+
+          .block-container { padding-top: 2rem; }
+
+          div[data-testid="stSidebar"] {
+            background: #ffffff !important;
+            border-right: 1px solid #e4edf5;
+          }
+
+          .stApp * { color: #000000; }
+          div[data-testid="stSidebar"] * { color: #000000 !important; }
+
+          .stTextInput input,
+          .stTextArea textarea,
+          .stNumberInput input,
+          div[data-baseweb="input"] input,
+          div[data-baseweb="textarea"] textarea {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border: 1px solid #cfd8e3 !important;
+            -webkit-text-fill-color: #000000 !important;
+          }
+
+          .stTextInput input::placeholder,
+          .stTextArea textarea::placeholder,
+          div[data-baseweb="input"] input::placeholder,
+          div[data-baseweb="textarea"] textarea::placeholder {
+            color: #5f6875 !important;
+            opacity: 1 !important;
+          }
+
+          .stSelectbox div[data-baseweb="select"] > div,
+          .stMultiSelect div[data-baseweb="select"] > div {
+            background: #ffffff !important;
+            color: #000000 !important;
+            border-color: #cfd8e3 !important;
+          }
+
+          .stButton button {
+            background: #f2f8ff !important;
+            color: #000000 !important;
+            border: 1px solid #c8d8ea !important;
+          }
+
+          .stSlider [data-baseweb="slider"] { color: #1f8ef1 !important; }
+
+          .tag {
+            display: inline-block;
+            padding: 0.25rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-right: 0.35rem;
+          }
+
+          .tag-blue { background: #e6f3ff; color: #0b4d7a !important; }
+          .tag-green { background: #e8f9f2; color: #0f604a !important; }
+
+          .card {
+            background: #ffffff;
+            border: 1px solid #e4edf5;
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            margin-bottom: 0.75rem;
+          }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+inject_light_theme()
 
 st.title("Strategic Forecast Question Builder")
 st.caption("Input: short company/sector brief. Output: strategic axes + forecast questions for pro forecasters.")
