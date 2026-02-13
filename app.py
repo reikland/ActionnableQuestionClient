@@ -248,6 +248,12 @@ def inject_light_theme() -> None:
             border-right: 1px solid #e4edf5;
           }
 
+          div[data-testid="stSidebar"] > div:first-child,
+          div[data-testid="stSidebar"] section,
+          div[data-testid="stSidebar"] section > div {
+            background: #ffffff !important;
+          }
+
           .stApp * { color: #000000; }
           div[data-testid="stSidebar"] * { color: #000000 !important; }
 
@@ -281,6 +287,22 @@ def inject_light_theme() -> None:
             background: #f2f8ff !important;
             color: #000000 !important;
             border: 1px solid #c8d8ea !important;
+          }
+
+          .stNumberInput div[data-baseweb="input"] {
+            background: #ffffff !important;
+            border: 1px solid #cfd8e3 !important;
+            border-radius: 0.75rem;
+          }
+
+          .stNumberInput div[data-baseweb="input"] button {
+            background: #eef6ff !important;
+            color: #000000 !important;
+            border-left: 1px solid #cfd8e3 !important;
+          }
+
+          .stNumberInput div[data-baseweb="input"] button:hover {
+            background: #deeeff !important;
           }
 
           .stSlider [data-baseweb="slider"] { color: #1f8ef1 !important; }
