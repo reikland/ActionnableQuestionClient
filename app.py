@@ -235,10 +235,27 @@ st.markdown(
         --blue: #1f8ef1;
         --green: #20b486;
       }
-      .stApp { background: linear-gradient(180deg, #f7fbff 0%, #eefaf6 100%); color: var(--ink); }
+      .stApp { background: #ffffff; color: #000000 !important; }
       .block-container { padding-top: 2rem; }
-      h1, h2, h3 { color: #0f3554 !important; }
+      h1, h2, h3, p, label, span, div { color: #000000; }
       div[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e4edf5; }
+      div[data-testid="stSidebar"] * { color: #000000 !important; }
+      .stTextInput input, .stTextArea textarea, .stNumberInput input {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #cfd8e3 !important;
+      }
+      .stSelectbox div[data-baseweb="select"] > div,
+      .stMultiSelect div[data-baseweb="select"] > div {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .stSlider [data-baseweb="slider"] { color: #1f8ef1 !important; }
+      .stButton button {
+        background: #f2f8ff !important;
+        color: #000000 !important;
+        border: 1px solid #c8d8ea !important;
+      }
       .tag {
         display: inline-block;
         padding: 0.25rem 0.55rem;
@@ -265,25 +282,25 @@ st.title("Strategic Forecast Question Builder")
 st.caption("Input: short company/sector brief. Output: strategic axes + forecast questions for pro forecasters.")
 
 with st.sidebar:
-    st.header("🔑 OpenRouter")
+    st.header("OpenRouter")
     api_key = st.text_input("OPENROUTER_API_KEY", value=os.getenv("OPENROUTER_API_KEY", ""), type="password")
 
-    st.header("🧠 Model")
+    st.header("Model")
     base_model = st.text_input("Base model", value=DEFAULT_MODEL_BASE)
     use_online_research = st.checkbox("Research uses :online", value=True)
     use_online_generate = st.checkbox("Generate uses :online", value=True)
     use_online_refresh = st.checkbox("Refresh/editor pass uses :online", value=True)
 
-    st.header("⚙️ Output")
+    st.header("Output")
     n_questions = st.slider("Number of questions", 8, 60, 24, 2)
     run_refresh = st.checkbox("Run final quality pass", value=True)
 
-    st.header("🎛️ Temperatures")
+    st.header("Temperatures")
     temp_research = st.slider("Research", 0.0, 1.0, 0.2, 0.05)
     temp_generate = st.slider("Generate", 0.0, 1.0, 0.35, 0.05)
     temp_refresh = st.slider("Refresh", 0.0, 1.0, 0.15, 0.05)
 
-    st.header("🧾 Max tokens")
+    st.header("Max tokens")
     tok_research = st.number_input("Research", 500, 5000, 1400, 100)
     tok_generate = st.number_input("Generate", 1000, 12000, 4200, 200)
     tok_refresh = st.number_input("Refresh", 800, 12000, 3200, 200)
@@ -302,7 +319,7 @@ with left:
         height=100,
         placeholder="e.g., emphasize EU regulation and procurement risk, keep at least 30% questions at 36m+ horizon.",
     )
-    run = st.button("🚀 Generate strategic axes + questions", type="primary", use_container_width=True, disabled=not api_key)
+    run = st.button("Generate strategic axes + questions", type="primary", use_container_width=True, disabled=not api_key)
 
 with right:
     st.subheader("2) Output")
